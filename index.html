@@ -1,0 +1,591 @@
+
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Échappée Normande : Entre Histoire, Nature et Douceur de Vivre </title>
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <script>
+      tailwind.config = {
+          theme: {
+              extend: {
+                  colors: {
+                      template: {
+                          sable: '#FFEDD5', 
+                          ocre: '#F97316',   // Orange Vibrant (Brand Accent)
+                          roche: '#0F172A',  // Bleu Nuit (Brand Dark)
+                          ciel: '#0D9488',   // Vert Lagon (Brand Primary)
+                          bg: '#FFF7ED'      // C'est un blanc cassé chaud, parfait pour la lecture et le contraste.
+                      }
+                  },
+                  fontFamily: {
+                      sans: ['"Plus Jakarta Sans"', 'sans-serif'], // Nouvelle police corps
+                      serif: ['"Outfit"', 'sans-serif'],           // Nouvelle police titres
+                  }
+              }
+          }
+      }
+    </script>
+    <style>
+        body { overflow-x: hidden; }
+        
+        /* 2. FORÇAGE DES GRAISSES (Comme sur la Landing Page) */
+        .font-sans { font-weight: 600 !important; }
+        .font-serif { font-weight: 800 !important; }
+
+        /* Ligne verticale de la timeline */
+        .timeline-line {
+            position: absolute;
+            left: 24px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: #E5E7EB;
+            z-index: 0;
+        }
+
+        @media (min-width: 768px) {
+            .timeline-line { left: 50%; margin-left: -1px; }
+        }
+
+        /* Style des cartes Info */
+        .tip-card {
+            border-left: 4px solid #F97316; /* ocre */
+            background-color: #FFF7ED;
+        }
+
+        /* Masquer la scrollbar de la nav mobile tout en gardant le scroll */
+        .hide-scroll::-webkit-scrollbar { display: none; }
+        .hide-scroll { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-template-bg text-template-roche antialiased">
+    
+    <nav id="nav-desktop" class="hidden md:flex fixed top-0 w-full z-50 bg-white/90 backdrop-blur border-b border-gray-200 py-4 px-8 justify-between items-center shadow-sm transition-transform duration-300 -translate-y-full">
+        <a href="#top" class="text-xl font-serif font-bold tracking-widest text-template-roche">MyTrip<span class="text-template-ocre">Planner</span></a>
+        <div class="space-x-6 text-sm font-bold text-gray-600">
+            <a href="#jour-1" class="nav-item-desktop hover:text-template-ocre transition">Le Parcours</a>
+            <a href="#pratique" class="nav-item-desktop hover:text-template-ocre transition">Infos Pratiques</a>
+        </div>
+    </nav>
+
+    <nav id="nav-mobile" class="md:hidden fixed top-0 w-full z-50 bg-white/95 backdrop-blur border-b border-gray-200 py-3 pl-4 overflow-x-auto hide-scroll whitespace-nowrap shadow-md transition-transform duration-300 -translate-y-full">
+        <div class="flex space-x-2 pr-4" id="mobile-menu-container">
+            <a href="#top" class="inline-block px-3 py-1 bg-template-roche text-white rounded-full text-xs font-bold shadow-sm">Top</a>
+            
+                <a href="#jour-1" class="mobile-link inline-block px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-xs font-bold hover:bg-template-sable transition-all duration-300">J1 Arrivée en Normandie : Douceur Honfleuraise</a>
+            
+                <a href="#jour-2" class="mobile-link inline-block px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-xs font-bold hover:bg-template-sable transition-all duration-300">J2 Honfleur, Cité des Peintres</a>
+            
+                <a href="#jour-3" class="mobile-link inline-block px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-xs font-bold hover:bg-template-sable transition-all duration-300">J3 Les Falaises d'Étretat et Fécamp</a>
+            
+                <a href="#jour-4" class="mobile-link inline-block px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-xs font-bold hover:bg-template-sable transition-all duration-300">J4 Rouen, Ville aux Cent Clochers</a>
+            
+                <a href="#jour-5" class="mobile-link inline-block px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-xs font-bold hover:bg-template-sable transition-all duration-300">J5 Sur les Traces du Débarquement</a>
+            
+                <a href="#jour-6" class="mobile-link inline-block px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-xs font-bold hover:bg-template-sable transition-all duration-300">J6 Bayeux, Tapisserie et Cathédrale</a>
+            
+                <a href="#jour-7" class="mobile-link inline-block px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-xs font-bold hover:bg-template-sable transition-all duration-300">J7 Le Mystique Mont Saint-Michel</a>
+            
+                <a href="#jour-8" class="mobile-link inline-block px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-xs font-bold hover:bg-template-sable transition-all duration-300">J8 Douceurs du Pays d'Auge</a>
+            
+                <a href="#jour-9" class="mobile-link inline-block px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-xs font-bold hover:bg-template-sable transition-all duration-300">J9 Giverny, Jardin de Monet</a>
+            
+                <a href="#jour-10" class="mobile-link inline-block px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-xs font-bold hover:bg-template-sable transition-all duration-300">J10 Retour vers Paris et Détente</a>
+            
+                <a href="#jour-11" class="mobile-link inline-block px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-xs font-bold hover:bg-template-sable transition-all duration-300">J11 Départ de Paris</a>
+            
+            <a href="#pratique" class="mobile-link inline-block px-3 py-1 border border-gray-300 text-gray-500 rounded-full text-xs font-bold">Infos</a>
+        </div>
+    </nav>
+
+    <header id="top" class="relative h-[60vh] flex items-center justify-center bg-cover bg-center"
+            style="background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7)), url('https://raw.githubusercontent.com/mytripplanner-dotfr/Rolland-france-9d96v7z8p530r12/main/header.png" || 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?q=80&w=2021'}');">
+        
+        <div class="relative z-20 text-center text-white px-4 max-w-3xl animate-fade-in-up">
+            <p class="font-sans text-template-sable tracking-[0.2em] mb-4 uppercase text-xs font-bold">Feuille de Route</p>
+            <h1 class="font-serif text-5xl md:text-8xl mb-6 leading-tight drop-shadow-lg">ROLLAND- FRANCE</h1>
+            <p class="font-sans text-lg md:text-xl text-gray-100 mb-10 font-medium max-w-2xl mx-auto leading-relaxed">Échappée Normande : Entre Histoire, Nature et Douceur de Vivre</p>
+            
+            <div class="flex flex-wrap justify-center gap-4 text-sm font-bold mb-10">
+                <span class="bg-white/20 backdrop-blur-md px-5 py-2 rounded-full border border-white/30 shadow-sm">🗓️ 11 jours</span>
+                <span class="bg-white/20 backdrop-blur-md px-5 py-2 rounded-full border border-white/30 shadow-sm">💰 3650€</span>
+                <span class="bg-white/20 backdrop-blur-md px-5 py-2 rounded-full border border-white/30 shadow-sm">🛬 18h avec escale depuis Mendes, Brésil</span>
+            </div>
+        </div>
+    </header>
+
+    <section id="itineraire" class="max-w-6xl mx-auto px-4 py-16 relative">
+        <div class="text-center mb-16">
+            <h2 class="text-template-ocre font-bold tracking-normal text-4xl mt-2 uppercase font-serif">Votre Roadtrip</h2>
+        </div>
+
+        <div class="relative">
+            <div class="timeline-line"></div>
+            
+                <div id="jour-1" class="section-etape relative z-10 mb-20 md:flex md:flex-row-reverse md:justify-between items-start group scroll-mt-32">
+                    <div class="absolute left-6 md:left-1/2 transform -translate-x-1/2 w-8 h-8 bg-template-roche rounded-full border-4 border-white shadow-lg flex items-center justify-center z-20"></div>
+                    
+                    <div class="md:w-[45%] pl-14 md:text-left md:pl-12">
+                        <span class="font-serif text-3xl block text-template-roche mb-2 font-bold">Jour 1</span>
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">Arrivée en Normandie : Douceur Honfleuraise</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed italic mb-4">Après un long voyage, la charmante ville portuaire de Honfleur offre un cadre idéal pour une première immersion en Normandie. Ses ruelles pavées, son Vieux Bassin pittoresque et ses maisons à colombages invitent à une découverte sereine et apaisante. Laissez-vous imprégner par l'atmosphère unique de ce lieu qui a inspiré tant d'artistes.</p>
+                        <ul class="text-sm text-gray-700 space-y-2 inline-block text-left font-medium">
+                            <li>🛬 <strong>Arrivée à Paris et transfert à Honfleur</strong>: Après l'atterrissage à l'aéroport de Paris-CDG, prenez un train pour Pont-l'Évêque ou Lisieux, puis un taxi ou bus pour Honfleur. Ce trajet vous permettra d'admirer les paysages normands.</li><li>🛏️ <strong>Installation à l'hôtel et première balade</strong>: Installez-vous confortablement dans votre hôtel 3 étoiles. Profitez de l'après-midi pour une promenade légère autour du Vieux Bassin, en admirant les bateaux et les façades colorées.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="pl-14 md:w-[45%] mt-6 md:mt-0 md:pr-12">
+                        <div class="rounded-xl overflow-hidden shadow-lg mb-4">
+                            <img src="https://raw.githubusercontent.com/mytripplanner-dotfr/Rolland-france-9d96v7z8p530r12/main/jour1.jpg" class="w-full h-64 object-cover" alt="Jour 1">
+                        </div>
+                        
+                            <div class="tip-card p-4 rounded-r-lg text-sm mb-2">
+                                <p class="font-bold text-template-ocre mb-1">ℹ️ Conseil Transport</p>
+                                <p class="text-gray-700">Le trajet de Paris à Honfleur prend environ 2h30 à 3h en combinant train et bus/taxi. Réservez vos billets à l'avance pour plus de sérénité.</p>
+                            </div>
+                        
+                            <div class="tip-card p-4 rounded-r-lg text-sm mb-2">
+                                <p class="font-bold text-template-ocre mb-1">💡 Première Soirée</p>
+                                <p class="text-gray-700">Dînez dans l'un des nombreux restaurants du port pour goûter aux spécialités locales comme les fruits de mer frais.</p>
+                            </div>
+                        
+                    </div>
+                </div>
+                
+                <div id="jour-2" class="section-etape relative z-10 mb-20 md:flex  md:justify-between items-start group scroll-mt-32">
+                    <div class="absolute left-6 md:left-1/2 transform -translate-x-1/2 w-8 h-8 bg-template-ocre rounded-full border-4 border-white shadow-lg flex items-center justify-center z-20"></div>
+                    
+                    <div class="md:w-[45%] pl-14 md:text-right md:pr-12">
+                        <span class="font-serif text-3xl block text-template-roche mb-2 font-bold">Jour 2</span>
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">Honfleur, Cité des Peintres</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed italic mb-4">Plongez au cœur de l'histoire artistique de Honfleur, une ville qui a vu naître l'impressionnisme. Flânez dans ses galeries d'art, visitez ses musées et laissez-vous charmer par l'ambiance créative qui règne encore dans ses rues. Une journée dédiée à la beauté et à l'inspiration.</p>
+                        <ul class="text-sm text-gray-700 space-y-2 inline-block text-left font-medium">
+                            <li>⛪ <strong>Visite de l'Église Sainte-Catherine</strong>: Découvrez cette église unique, entièrement construite en bois par les charpentiers de marine au XVe siècle. Son architecture rappelle la coque d'un navire renversé.</li><li>🖼️ <strong>Exploration des Galeries d'Art et du Musée Eugène Boudin</strong>: Parcourez les nombreuses galeries d'art du quartier Sainte-Catherine. Le musée Boudin, quant à lui, offre une belle collection d'œuvres pré-impressionnistes et impressionnistes liées à la région.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="pl-14 md:w-[45%] mt-6 md:mt-0 md:pl-12">
+                        <div class="rounded-xl overflow-hidden shadow-lg mb-4">
+                            <img src="https://raw.githubusercontent.com/mytripplanner-dotfr/Rolland-france-9d96v7z8p530r12/main/jour2.jpg" class="w-full h-64 object-cover" alt="Jour 2">
+                        </div>
+                        
+                            <div class="tip-card p-4 rounded-r-lg text-sm mb-2">
+                                <p class="font-bold text-template-ocre mb-1">🚶‍♀️ Balade</p>
+                                <p class="text-gray-700">N'hésitez pas à vous perdre dans les petites rues adjacentes au Vieux Bassin, elles regorgent de boutiques d'artisans et de cafés charmants.</p>
+                            </div>
+                        
+                            <div class="tip-card p-4 rounded-r-lg text-sm mb-2">
+                                <p class="font-bold text-template-ocre mb-1">🍽️ Pause Gourmande</p>
+                                <p class="text-gray-700">Goûtez aux fameuses crêpes normandes dans une crêperie traditionnelle pour le déjeuner.</p>
+                            </div>
+                        
+                    </div>
+                </div>
+                
+                <div id="jour-3" class="section-etape relative z-10 mb-20 md:flex md:flex-row-reverse md:justify-between items-start group scroll-mt-32">
+                    <div class="absolute left-6 md:left-1/2 transform -translate-x-1/2 w-8 h-8 bg-template-ciel rounded-full border-4 border-white shadow-lg flex items-center justify-center z-20"></div>
+                    
+                    <div class="md:w-[45%] pl-14 md:text-left md:pl-12">
+                        <span class="font-serif text-3xl block text-template-roche mb-2 font-bold">Jour 3</span>
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">Les Falaises d'Étretat et Fécamp</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed italic mb-4">Aujourd'hui, l'air marin vous appelle vers les majestueuses falaises d'Étretat, un site naturel d'une beauté époustouflante. Poursuivez votre route vers Fécamp, une ville portuaire riche en histoire et en patrimoine. Une journée entre paysages grandioses et découvertes culturelles.</p>
+                        <ul class="text-sm text-gray-700 space-y-2 inline-block text-left font-medium">
+                            <li>⛰️ <strong>Randonnée sur les Falaises d'Étretat</strong>: Admirez les célèbres arches et l'Aiguille Creuse depuis les sentiers de randonnée. Prévoyez de bonnes chaussures pour profiter pleinement des vues panoramiques.</li><li>🥃 <strong>Visite du Palais Bénédictine à Fécamp</strong>: Découvrez l'histoire et les secrets de fabrication de la liqueur Bénédictine dans ce palais néo-gothique et néo-renaissance. La visite inclut une dégustation.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="pl-14 md:w-[45%] mt-6 md:mt-0 md:pr-12">
+                        <div class="rounded-xl overflow-hidden shadow-lg mb-4">
+                            <img src="https://raw.githubusercontent.com/mytripplanner-dotfr/Rolland-france-9d96v7z8p530r12/main/jour3.jpg" class="w-full h-64 object-cover" alt="Jour 3">
+                        </div>
+                        
+                            <div class="tip-card p-4 rounded-r-lg text-sm mb-2">
+                                <p class="font-bold text-template-ocre mb-1">🚗 Location de Voiture</p>
+                                <p class="text-gray-700">Pour cette journée et les suivantes, une voiture de location est fortement recommandée pour explorer la région à votre rythme.</p>
+                            </div>
+                        
+                            <div class="tip-card p-4 rounded-r-lg text-sm mb-2">
+                                <p class="font-bold text-template-ocre mb-1">📸 Meilleur Angle</p>
+                                <p class="text-gray-700">Pour les falaises d'Étretat, montez sur la falaise d'Amont (côté chapelle) et la falaise d'Aval pour des perspectives différentes et spectaculaires.</p>
+                            </div>
+                        
+                    </div>
+                </div>
+                
+                <div id="jour-4" class="section-etape relative z-10 mb-20 md:flex  md:justify-between items-start group scroll-mt-32">
+                    <div class="absolute left-6 md:left-1/2 transform -translate-x-1/2 w-8 h-8 bg-template-roche rounded-full border-4 border-white shadow-lg flex items-center justify-center z-20"></div>
+                    
+                    <div class="md:w-[45%] pl-14 md:text-right md:pr-12">
+                        <span class="font-serif text-3xl block text-template-roche mb-2 font-bold">Jour 4</span>
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">Rouen, Ville aux Cent Clochers</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed italic mb-4">Direction Rouen, la capitale historique de la Normandie, une ville d'art et d'histoire. Suivez les traces de Jeanne d'Arc, admirez sa cathédrale gothique et flânez dans ses rues médiévales bordées de maisons à pans de bois. Une journée riche en découvertes architecturales et historiques.</p>
+                        <ul class="text-sm text-gray-700 space-y-2 inline-block text-left font-medium">
+                            <li>⛪ <strong>Exploration de la Cathédrale Notre-Dame de Rouen</strong>: Laissez-vous émerveiller par la façade sculptée de cette cathédrale, immortalisée par Monet. Montez à la Tour de Beurre pour une vue imprenable sur la ville.</li><li>🕰️ <strong>Découverte du Gros Horloge et du Vieux Rouen</strong>: Traversez la rue du Gros Horloge, l'une des plus anciennes rues piétonnes de France, et admirez son horloge astronomique. Perdez-vous dans les ruelles du quartier historique.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="pl-14 md:w-[45%] mt-6 md:mt-0 md:pl-12">
+                        <div class="rounded-xl overflow-hidden shadow-lg mb-4">
+                            <img src="https://raw.githubusercontent.com/mytripplanner-dotfr/Rolland-france-9d96v7z8p530r12/main/jour4.jpg" class="w-full h-64 object-cover" alt="Jour 4">
+                        </div>
+                        
+                            <div class="tip-card p-4 rounded-r-lg text-sm mb-2">
+                                <p class="font-bold text-template-ocre mb-1">🚶‍♂️ Conseil</p>
+                                <p class="text-gray-700">Rouen se visite très bien à pied. Garez votre voiture en périphérie et utilisez les transports en commun ou marchez.</p>
+                            </div>
+                        
+                            <div class="tip-card p-4 rounded-r-lg text-sm mb-2">
+                                <p class="font-bold text-template-ocre mb-1">📜 Histoire</p>
+                                <p class="text-gray-700">Ne manquez pas la Place du Vieux Marché, où Jeanne d'Arc fut brûlée. Un mémorial moderne y est érigé.</p>
+                            </div>
+                        
+                    </div>
+                </div>
+                
+                <div id="jour-5" class="section-etape relative z-10 mb-20 md:flex md:flex-row-reverse md:justify-between items-start group scroll-mt-32">
+                    <div class="absolute left-6 md:left-1/2 transform -translate-x-1/2 w-8 h-8 bg-template-ocre rounded-full border-4 border-white shadow-lg flex items-center justify-center z-20"></div>
+                    
+                    <div class="md:w-[45%] pl-14 md:text-left md:pl-12">
+                        <span class="font-serif text-3xl block text-template-roche mb-2 font-bold">Jour 5</span>
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">Sur les Traces du Débarquement</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed italic mb-4">Une journée émouvante et essentielle pour comprendre l'histoire contemporaine. Visitez les plages du Débarquement et les musées dédiés à la Seconde Guerre mondiale. Un moment de recueillement et de mémoire, pour honorer ceux qui ont combattu pour la liberté.</p>
+                        <ul class="text-sm text-gray-700 space-y-2 inline-block text-left font-medium">
+                            <li>⚓ <strong>Visite du Musée du Débarquement à Arromanches</strong>: Découvrez les vestiges du port artificiel Mulberry B et comprenez l'ingéniosité de cette prouesse technique. Le musée offre une perspective unique sur l'opération.</li><li>🎖️ <strong>Recueillement à Omaha Beach et au Cimetière Américain de Colleville-sur-Mer</strong>: Marchez sur la plage où tant de soldats ont débarqué. Le cimetière, avec ses milliers de croix blanches, est un lieu de mémoire poignant et solennel.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="pl-14 md:w-[45%] mt-6 md:mt-0 md:pr-12">
+                        <div class="rounded-xl overflow-hidden shadow-lg mb-4">
+                            <img src="https://raw.githubusercontent.com/mytripplanner-dotfr/Rolland-france-9d96v7z8p530r12/main/jour5.jpg" class="w-full h-64 object-cover" alt="Jour 5">
+                        </div>
+                        
+                            <div class="tip-card p-4 rounded-r-lg text-sm mb-2">
+                                <p class="font-bold text-template-ocre mb-1">🗺️ Itinéraire</p>
+                                <p class="text-gray-700">Les sites sont assez étendus. Prévoyez une journée complète et organisez votre parcours pour optimiser les déplacements en voiture.</p>
+                            </div>
+                        
+                            <div class="tip-card p-4 rounded-r-lg text-sm mb-2">
+                                <p class="font-bold text-template-ocre mb-1">🙏 Respect</p>
+                                <p class="text-gray-700">Ces lieux sont des sites de mémoire. Adoptez une attitude respectueuse et silencieuse, particulièrement dans les cimetières.</p>
+                            </div>
+                        
+                    </div>
+                </div>
+                
+                <div id="jour-6" class="section-etape relative z-10 mb-20 md:flex  md:justify-between items-start group scroll-mt-32">
+                    <div class="absolute left-6 md:left-1/2 transform -translate-x-1/2 w-8 h-8 bg-template-ciel rounded-full border-4 border-white shadow-lg flex items-center justify-center z-20"></div>
+                    
+                    <div class="md:w-[45%] pl-14 md:text-right md:pr-12">
+                        <span class="font-serif text-3xl block text-template-roche mb-2 font-bold">Jour 6</span>
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">Bayeux, Tapisserie et Cathédrale</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed italic mb-4">Poursuivez votre exploration de l'histoire normande à Bayeux, une ville épargnée par les bombardements de 1944. Admirez la célèbre Tapisserie de Bayeux, chef-d'œuvre médiéval, et visitez sa magnifique cathédrale. Une plongée dans le passé, entre art et architecture.</p>
+                        <ul class="text-sm text-gray-700 space-y-2 inline-block text-left font-medium">
+                            <li>🖼️ <strong>Découverte de la Tapisserie de Bayeux</strong>: Contemplez cette broderie unique du XIe siècle, classée au patrimoine mondial de l'UNESCO, qui raconte la conquête de l'Angleterre par Guillaume le Conquérant. Un audioguide est indispensable.</li><li>⛪ <strong>Visite de la Cathédrale Notre-Dame de Bayeux</strong>: Explorez cette impressionnante cathédrale, un joyau de l'art roman et gothique. Ne manquez pas sa crypte et ses fresques médiévales.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="pl-14 md:w-[45%] mt-6 md:mt-0 md:pl-12">
+                        <div class="rounded-xl overflow-hidden shadow-lg mb-4">
+                            <img src="https://raw.githubusercontent.com/mytripplanner-dotfr/Rolland-france-9d96v7z8p530r12/main/jour6.jpg" class="w-full h-64 object-cover" alt="Jour 6">
+                        </div>
+                        
+                            <div class="tip-card p-4 rounded-r-lg text-sm mb-2">
+                                <p class="font-bold text-template-ocre mb-1">🚶‍♀️ Centre-ville</p>
+                                <p class="text-gray-700">Le centre historique de Bayeux est compact et très agréable à parcourir à pied. Profitez des petites boutiques et des salons de thé.</p>
+                            </div>
+                        
+                            <div class="tip-card p-4 rounded-r-lg text-sm mb-2">
+                                <p class="font-bold text-template-ocre mb-1">💡 Astuce</p>
+                                <p class="text-gray-700">Achetez un billet combiné pour la Tapisserie, la Cathédrale et le Musée Mémorial de la Bataille de Normandie pour économiser.</p>
+                            </div>
+                        
+                    </div>
+                </div>
+                
+                <div id="jour-7" class="section-etape relative z-10 mb-20 md:flex md:flex-row-reverse md:justify-between items-start group scroll-mt-32">
+                    <div class="absolute left-6 md:left-1/2 transform -translate-x-1/2 w-8 h-8 bg-template-roche rounded-full border-4 border-white shadow-lg flex items-center justify-center z-20"></div>
+                    
+                    <div class="md:w-[45%] pl-14 md:text-left md:pl-12">
+                        <span class="font-serif text-3xl block text-template-roche mb-2 font-bold">Jour 7</span>
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">Le Mystique Mont Saint-Michel</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed italic mb-4">Une journée inoubliable vous attend avec la visite du Mont Saint-Michel, "Merveille de l'Occident". Ce site emblématique, classé au patrimoine mondial de l'UNESCO, est une prouesse architecturale et un lieu de spiritualité unique. Préparez-vous à monter de nombreuses marches pour atteindre l'abbaye.</p>
+                        <ul class="text-sm text-gray-700 space-y-2 inline-block text-left font-medium">
+                            <li>🚶‍♂️ <strong>Ascension et exploration du village</strong>: Traversez la passerelle et montez à travers les ruelles médiévales du Mont. Découvrez les boutiques, les restaurants et les points de vue magnifiques sur la baie.</li><li>⛪ <strong>Visite de l'Abbaye du Mont Saint-Michel</strong>: Explorez cette abbaye bénédictine, chef-d'œuvre de l'architecture médiévale. Ses salles, cloîtres et terrasses offrent des panoramas à couper le souffle.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="pl-14 md:w-[45%] mt-6 md:mt-0 md:pr-12">
+                        <div class="rounded-xl overflow-hidden shadow-lg mb-4">
+                            <img src="https://raw.githubusercontent.com/mytripplanner-dotfr/Rolland-france-9d96v7z8p530r12/main/jour7.jpg" class="w-full h-64 object-cover" alt="Jour 7">
+                        </div>
+                        
+                            <div class="tip-card p-4 rounded-r-lg text-sm mb-2">
+                                <p class="font-bold text-template-ocre mb-1">⚠️ Marées</p>
+                                <p class="text-gray-700">Consultez les horaires des marées avant votre visite, surtout si vous souhaitez voir le Mont entouré d'eau. La baie est sujette à de fortes marées.</p>
+                            </div>
+                        
+                            <div class="tip-card p-4 rounded-r-lg text-sm mb-2">
+                                <p class="font-bold text-template-ocre mb-1">👟 Chaussures</p>
+                                <p class="text-gray-700">Prévoyez des chaussures confortables, car la visite implique beaucoup de marche et de montées.</p>
+                            </div>
+                        
+                            <div class="tip-card p-4 rounded-r-lg text-sm mb-2">
+                                <p class="font-bold text-template-ocre mb-1">🅿️ Accès</p>
+                                <p class="text-gray-700">Le parking est situé à quelques kilomètres du Mont. Des navettes gratuites sont disponibles pour vous y emmener.</p>
+                            </div>
+                        
+                    </div>
+                </div>
+                
+                <div id="jour-8" class="section-etape relative z-10 mb-20 md:flex  md:justify-between items-start group scroll-mt-32">
+                    <div class="absolute left-6 md:left-1/2 transform -translate-x-1/2 w-8 h-8 bg-template-ocre rounded-full border-4 border-white shadow-lg flex items-center justify-center z-20"></div>
+                    
+                    <div class="md:w-[45%] pl-14 md:text-right md:pr-12">
+                        <span class="font-serif text-3xl block text-template-roche mb-2 font-bold">Jour 8</span>
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">Douceurs du Pays d'Auge</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed italic mb-4">Quittez les côtes pour vous enfoncer dans le bocage normand, au cœur du Pays d'Auge. Cette région est réputée pour ses produits cidricoles, ses fromages et ses villages pittoresques. Une journée dédiée à la gastronomie et à la découverte de la campagne authentique.</p>
+                        <ul class="text-sm text-gray-700 space-y-2 inline-block text-left font-medium">
+                            <li>🏘️ <strong>Visite de Beuvron-en-Auge, l'un des Plus Beaux Villages de France</strong>: Flânez dans ce village typique avec ses maisons à colombages et ses halles. C'est un véritable concentré de charme normand.</li><li>🧀 <strong>Dégustation de produits locaux sur la Route du Cidre</strong>: Parcourez la Route du Cidre et arrêtez-vous dans une ferme cidricole pour déguster cidre, calvados et pommeau. Ne manquez pas de goûter au fromage Pont-l'Évêque.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="pl-14 md:w-[45%] mt-6 md:mt-0 md:pl-12">
+                        <div class="rounded-xl overflow-hidden shadow-lg mb-4">
+                            <img src="https://raw.githubusercontent.com/mytripplanner-dotfr/Rolland-france-9d96v7z8p530r12/main/jour8.jpg" class="w-full h-64 object-cover" alt="Jour 8">
+                        </div>
+                        
+                            <div class="tip-card p-4 rounded-r-lg text-sm mb-2">
+                                <p class="font-bold text-template-ocre mb-1">🚗 Exploration</p>
+                                <p class="text-gray-700">La Route du Cidre est idéale à parcourir en voiture, permettant des arrêts spontanés dans les fermes et les petits villages.</p>
+                            </div>
+                        
+                            <div class="tip-card p-4 rounded-r-lg text-sm mb-2">
+                                <p class="font-bold text-template-ocre mb-1">🎁 Souvenirs</p>
+                                <p class="text-gray-700">C'est l'endroit parfait pour acheter des produits locaux comme souvenirs gourmands.</p>
+                            </div>
+                        
+                    </div>
+                </div>
+                
+                <div id="jour-9" class="section-etape relative z-10 mb-20 md:flex md:flex-row-reverse md:justify-between items-start group scroll-mt-32">
+                    <div class="absolute left-6 md:left-1/2 transform -translate-x-1/2 w-8 h-8 bg-template-ciel rounded-full border-4 border-white shadow-lg flex items-center justify-center z-20"></div>
+                    
+                    <div class="md:w-[45%] pl-14 md:text-left md:pl-12">
+                        <span class="font-serif text-3xl block text-template-roche mb-2 font-bold">Jour 9</span>
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">Giverny, Jardin de Monet</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed italic mb-4">Aujourd'hui, une escapade artistique vous mène à Giverny, où Claude Monet a créé son célèbre jardin et ses nymphéas. Laissez-vous transporter par la beauté des lieux qui ont inspiré les plus grandes œuvres du maître impressionniste. Une journée poétique et colorée.</p>
+                        <ul class="text-sm text-gray-700 space-y-2 inline-block text-left font-medium">
+                            <li>🌷 <strong>Visite de la Maison et des Jardins de Claude Monet</strong>: Explorez la maison rose du peintre et ses deux jardins : le Clos Normand fleuri et le Jardin d'Eau avec son pont japonais, ses saules pleureurs et ses nymphéas emblématiques.</li><li>🖼️ <strong>Découverte du Musée des Impressionnismes Giverny</strong>: Ce musée propose des expositions temporaires dédiées à l'impressionnisme et à ses suites, offrant un complément intéressant à la visite des jardins de Monet.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="pl-14 md:w-[45%] mt-6 md:mt-0 md:pr-12">
+                        <div class="rounded-xl overflow-hidden shadow-lg mb-4">
+                            <img src="https://raw.githubusercontent.com/mytripplanner-dotfr/Rolland-france-9d96v7z8p530r12/main/jour9.jpg" class="w-full h-64 object-cover" alt="Jour 9">
+                        </div>
+                        
+                            <div class="tip-card p-4 rounded-r-lg text-sm mb-2">
+                                <p class="font-bold text-template-ocre mb-1">🎟️ Billets</p>
+                                <p class="text-gray-700">Réservez vos billets pour la Fondation Monet à l'avance, surtout en haute saison, pour éviter les longues files d'attente.</p>
+                            </div>
+                        
+                            <div class="tip-card p-4 rounded-r-lg text-sm mb-2">
+                                <p class="font-bold text-template-ocre mb-1">🌸 Meilleure Période</p>
+                                <p class="text-gray-700">Les jardins sont les plus spectaculaires au printemps (avril-mai) et en été (juin-juillet) pour la floraison.</p>
+                            </div>
+                        
+                    </div>
+                </div>
+                
+                <div id="jour-10" class="section-etape relative z-10 mb-20 md:flex  md:justify-between items-start group scroll-mt-32">
+                    <div class="absolute left-6 md:left-1/2 transform -translate-x-1/2 w-8 h-8 bg-template-roche rounded-full border-4 border-white shadow-lg flex items-center justify-center z-20"></div>
+                    
+                    <div class="md:w-[45%] pl-14 md:text-right md:pr-12">
+                        <span class="font-serif text-3xl block text-template-roche mb-2 font-bold">Jour 10</span>
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">Retour vers Paris et Détente</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed italic mb-4">Après avoir exploré les merveilles de la Normandie, il est temps de se rapprocher de la capitale. Profitez de cette journée pour un retour en douceur, peut-être avec un dernier aperçu de la campagne normande ou une pause dans une petite ville avant de rejoindre Paris. Une transition paisible avant le départ.</p>
+                        <ul class="text-sm text-gray-700 space-y-2 inline-block text-left font-medium">
+                            <li>🚆 <strong>Trajet retour vers Paris</strong>: Prenez le train depuis Vernon-Giverny ou une autre gare normande pour rejoindre Paris. Installez-vous dans votre hôtel parisien pour votre dernière nuit en France.</li><li>🚶‍♀️ <strong>Balade relaxante le long de la Seine ou dans un quartier parisien</strong>: Profitez de la fin de journée pour une promenade légère, un dîner dans un bistrot typique ou simplement vous détendre après ces jours intenses.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="pl-14 md:w-[45%] mt-6 md:mt-0 md:pl-12">
+                        <div class="rounded-xl overflow-hidden shadow-lg mb-4">
+                            <img src="https://raw.githubusercontent.com/mytripplanner-dotfr/Rolland-france-9d96v7z8p530r12/main/jour10.jpg" class="w-full h-64 object-cover" alt="Jour 10">
+                        </div>
+                        
+                            <div class="tip-card p-4 rounded-r-lg text-sm mb-2">
+                                <p class="font-bold text-template-ocre mb-1">🏨 Hébergement</p>
+                                <p class="text-gray-700">Choisissez un hôtel près d'une gare ou d'une ligne de métro pour faciliter votre départ le lendemain.</p>
+                            </div>
+                        
+                            <div class="tip-card p-4 rounded-r-lg text-sm mb-2">
+                                <p class="font-bold text-template-ocre mb-1">🍽️ Dernier Dîner</p>
+                                <p class="text-gray-700">Offrez-vous un bon repas pour célébrer la fin de votre voyage, peut-être dans un restaurant avec vue sur un monument parisien.</p>
+                            </div>
+                        
+                    </div>
+                </div>
+                
+                <div id="jour-11" class="section-etape relative z-10 mb-20 md:flex md:flex-row-reverse md:justify-between items-start group scroll-mt-32">
+                    <div class="absolute left-6 md:left-1/2 transform -translate-x-1/2 w-8 h-8 bg-template-ocre rounded-full border-4 border-white shadow-lg flex items-center justify-center z-20"></div>
+                    
+                    <div class="md:w-[45%] pl-14 md:text-left md:pl-12">
+                        <span class="font-serif text-3xl block text-template-roche mb-2 font-bold">Jour 11</span>
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">Départ de Paris</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed italic mb-4">C'est le dernier jour de votre aventure française. Après un petit-déjeuner typiquement parisien, il est temps de rejoindre l'aéroport pour votre vol retour. Emportez avec vous les souvenirs inoubliables de la Normandie et de ses paysages variés, de son histoire riche et de sa gastronomie savoureuse.</p>
+                        <ul class="text-sm text-gray-700 space-y-2 inline-block text-left font-medium">
+                            <li>🥐 <strong>Petit-déjeuner français</strong>: Profitez d'un dernier croissant et café dans un café parisien avant de partir.</li><li>🛫 <strong>Transfert à l'aéroport Paris-CDG et vol retour</strong>: Organisez votre transfert vers l'aéroport en fonction de l'heure de votre vol. Prévoyez suffisamment de temps pour les formalités.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="pl-14 md:w-[45%] mt-6 md:mt-0 md:pr-12">
+                        <div class="rounded-xl overflow-hidden shadow-lg mb-4">
+                            <img src="https://raw.githubusercontent.com/mytripplanner-dotfr/Rolland-france-9d96v7z8p530r12/main/jour11.jpg" class="w-full h-64 object-cover" alt="Jour 11">
+                        </div>
+                        
+                            <div class="tip-card p-4 rounded-r-lg text-sm mb-2">
+                                <p class="font-bold text-template-ocre mb-1">⏰ Conseil</p>
+                                <p class="text-gray-700">Prévoyez au moins 3 heures avant l'heure de votre vol pour les formalités d'enregistrement et de sécurité à l'aéroport.</p>
+                            </div>
+                        
+                            <div class="tip-card p-4 rounded-r-lg text-sm mb-2">
+                                <p class="font-bold text-template-ocre mb-1">🧳 Bagages</p>
+                                <p class="text-gray-700">Vérifiez les restrictions de poids et de taille de vos bagages pour votre vol retour.</p>
+                            </div>
+                        
+                    </div>
+                </div>
+                
+        </div>
+    </section>
+
+    <section id="pratique" class="bg-white border-t border-gray-200 pt-12 pb-12 scroll-mt-24">
+        <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-3 gap-10">
+            <div>
+                <h4 class="font-serif text-xl mb-4 text-template-roche flex items-center gap-2 font-bold">
+                    <span>💴</span> Budget
+                </h4>
+                
+                    <p class="text-sm text-gray-600 leading-relaxed mb-2"><strong>Budget vol: </strong>1200€/pers (Vol aller-retour Mendes, Brésil - Paris CDG en classe économique)</p>
+                
+                    <p class="text-sm text-gray-600 leading-relaxed mb-2"><strong>Budget transports: </strong>500€/pers (Trains, location de voiture 8 jours, essence, péages)</p>
+                
+                    <p class="text-sm text-gray-600 leading-relaxed mb-2"><strong>Budget repas: </strong>660€/pers (11 jours, repas moyens, incluant quelques spécialités locales)</p>
+                
+                    <p class="text-sm text-gray-600 leading-relaxed mb-2"><strong>Budget logement: </strong>1000€/pers (10 nuits en hôtels 3 étoiles, base chambre double partagée)</p>
+                
+                    <p class="text-sm text-gray-600 leading-relaxed mb-2"><strong>Budget activités: </strong>290€/pers (Entrées musées, sites, dégustations)</p>
+                
+            </div>
+            <div>
+                <h4 class="font-serif text-xl mb-4 text-template-roche flex items-center gap-2 font-bold">
+                    <span>☀️</span> Périodes Idéales
+                </h4>
+                
+                    <p class="text-sm text-gray-600 leading-relaxed mb-2">Les périodes idéales pour ce séjour sont les mois de mai, juin et septembre.</p>
+                
+            </div>
+            <div>
+                <h4 class="font-serif text-xl mb-4 text-template-roche flex items-center gap-2 font-bold">
+                    <span>📃</span> Infos pratiques
+                </h4>
+                
+                    <p class="text-sm text-gray-600 leading-relaxed mb-2">ℹ️ La France compte environ 68 millions d'habitants. La Normandie est une région de taille moyenne, connue pour son histoire et ses paysages variés.</p>
+                
+                    <p class="text-sm text-gray-600 leading-relaxed mb-2">💳 La monnaie est l'Euro (€). Les cartes de crédit sont largement acceptées, mais ayez un peu de liquide pour les petits commerces ou marchés.</p>
+                
+                    <p class="text-sm text-gray-600 leading-relaxed mb-2">🍎 La Normandie est célèbre pour ses produits laitiers (camembert, livarot), son cidre, son calvados et ses fruits de mer. Ne manquez pas de goûter la tarte Tatin.</p>
+                
+                    <p class="text-sm text-gray-600 leading-relaxed mb-2">💡 Le Mont Saint-Michel est un site unique au monde, mais il peut être très fréquenté. Visitez-le tôt le matin ou en fin d'après-midi pour une meilleure expérience.</p>
+                
+            </div>            
+            <div>
+                <h4 class="font-serif text-xl mb-4 text-template-roche flex items-center gap-2 font-bold">
+                    <span>🔗</span> Liens Utiles
+                </h4>
+                <ul class="text-sm space-y-3">
+                  <li><a href="https://mytripplanner-dotfr.github.io/Rolland-france-9d96v7z8p530r12/map.html" target="_blank" class="hover:text-template-ocre transition flex items-center gap-2"><strong>🗺️ Carte Interactive</strong></a></li>
+                    
+                        <li><a href="https://www.normandie-tourisme.fr/" target="_blank" class="hover:text-template-ocre transition flex items-center gap-2"><strong>📘 Normandie Tourisme</strong></a></li>
+                    
+                        <li><a href="https://fondation-monet.com/" target="_blank" class="hover:text-template-ocre transition flex items-center gap-2"><strong>🎨 Fondation Monet Giverny</strong></a></li>
+                    
+                        <li><a href="https://www.ot-montsaintmichel.com/" target="_blank" class="hover:text-template-ocre transition flex items-center gap-2"><strong>🏰 Mont Saint-Michel</strong></a></li>
+                    
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-slate-50 border-t border-slate-200 py-6">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <p class="font-serif text-lg text-template-roche mb-2 font-bold">
+                MyTrip<span class="text-template-ocre">Planner</span>
+            </p>
+
+                <div class="flex justify-center gap-4 text-[10px] md:text-xs text-slate-500 mb-4 font-semibold">
+                    <a href="#" class="hover:text-brand-primary transition hover:underline">Mentions Légales</a>
+                    <a href="#" class="hover:text-brand-primary transition hover:underline">CGU</a>
+                    <a href="#" class="hover:text-brand-primary transition hover:underline">Confidentialité</a>
+                </div>
+
+            <p class="text-[10px] text-gray-400 mb-2">
+                &copy; 2025 MyTripPlanner. Tous droits réservés.
+            </p>
+
+            <div class="flex justify-center">
+                <p class="text-[10px] text-gray-400 uppercase tracking-widest px-2 py-0.5 border border-gray-200 rounded-full inline-block">
+                    🤖 Contenu généré par IA
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Gestion Scroll & Menu
+        const navDesktop = document.getElementById('nav-desktop');
+        const navMobile = document.getElementById('nav-mobile');
+        
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 300) {
+                navDesktop.classList.remove('-translate-y-full');
+                navMobile.classList.remove('-translate-y-full');
+            } else {
+                navDesktop.classList.add('-translate-y-full');
+                navMobile.classList.add('-translate-y-full');
+            }
+        });
+        
+        // Active Link Highlighter
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const activeId = entry.target.id;
+                    document.querySelectorAll('.mobile-link').forEach(link => {
+                        const linkHref = link.getAttribute('href').substring(1);
+                        if (linkHref === activeId) {
+                            link.classList.remove('bg-gray-100', 'text-gray-700');
+                            link.classList.add('bg-template-ocre', 'text-white', 'shadow-md');
+                            link.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+                        } else {
+                            link.classList.add('bg-gray-100', 'text-gray-700');
+                            link.classList.remove('bg-template-ocre', 'text-white', 'shadow-md');
+                        }
+                    });
+                }
+            });
+        }, { rootMargin: '-40% 0px -60% 0px' });
+
+        document.querySelectorAll('div[id^="jour-"], section#pratique').forEach(s => observer.observe(s));
+    </script>
+</body>
+</html>
